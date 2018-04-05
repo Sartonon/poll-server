@@ -13,15 +13,17 @@ const messages = [];
 app.get('/', (req, res) => res.send('Hello World!'));
 
 app.get('/messages', (req, res) => {
-  console.log(req.query.id);
-  res.send(messages);
+  const index =  messages.findIndex(message => message.id === req.query.id);
+  if (index === messages.length) {
+    res.send([]);
+  }
+  res.send(messages.slice(index + 1));
 });
 
 app.post('/messages', (req, res) => {
   const data = req.body;
   data.id = _.uniqueId('message_');
   messages.push(data);
-  console.log(data);
   res.send(data);
 });
 
