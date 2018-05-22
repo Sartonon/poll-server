@@ -18,7 +18,7 @@ app.get('/messages', (req, res) => {
   if (index === messages.length) {
     res.send([]);
   } else if (index == -1 && messages.length > 0) {
-    res.send(messages[messages.length - 1]);
+    res.send([messages[messages.length - 1]]);
   } else {
     res.send(messages.slice(index + 1));
   }
