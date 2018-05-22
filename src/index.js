@@ -16,8 +16,11 @@ app.get('/messages', (req, res) => {
   const index =  messages.findIndex(message => message.id === req.query.id);
   if (index === messages.length) {
     res.send([]);
+  } else if (!index && messages.length > 0) {
+    res.send(messages[messages.length - 1]);
+  } else {
+    res.send(messages.slice(index + 1));
   }
-  res.send(messages.slice(index + 1));
 });
 
 app.post('/messages', (req, res) => {
