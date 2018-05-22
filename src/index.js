@@ -14,6 +14,7 @@ app.get('/', (req, res) => res.send('Hello World!'));
 
 app.get('/messages', (req, res) => {
   const index =  messages.findIndex(message => message.id === req.query.id);
+  console.log(index);
   if (index === messages.length) {
     res.send([]);
   } else if (!index && messages.length > 0) {
